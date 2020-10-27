@@ -48,11 +48,24 @@ function CheckColors(val){
  if(val!="type"){
   var element=document.getElementById(val);
   element.style.display='block';
+  var element = document.getElementById('button');
+  element.style.display='block';
 }
 
  else  {
   var element=document.getElementById('is');
   element.style.display='none';}
+}
+
+function readInput() {
+  input = ""
+  var arr = ["is", "are", "was"]
+  for(i=0; i<arr.length; i++){
+    var element = document.getElementById(arr[i]);
+    if(element.value!=""){
+      input = element.value       //Desired Input
+    }
+  }
 }
 
 </script>
@@ -107,7 +120,13 @@ function CheckColors(val){
 
     <input type="text" name="are" id="are" placeholder="are" style='display:none;margin:0 auto; width: 500px;'/>
     <input type="text" name="was" id="was" placeholder="was" style='display:none;margin:0 auto; width: 500px;'/>
+
+    <button type="submit" id="button" class="btn btn-success" style='display:none;margin:10px auto; width: 150px;' onclick='readInput()'; >Submit</button>
   </section>
+
+
+
+
 
 
 
