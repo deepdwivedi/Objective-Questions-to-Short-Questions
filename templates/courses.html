@@ -43,6 +43,8 @@ function CheckColors(val){
   var element=document.getElementById(arr[i]);
   element.value = "";
   element.style.display='none';
+  var out = document.getElementById('out');
+  out.innerText = ""; 
   }
  
  if(val!="type"){
@@ -58,13 +60,34 @@ function CheckColors(val){
 }
 
 function readInput() {
-  input = ""
+  var input = ""
+  var answer = ""
   var arr = ["is", "are", "was"]
   for(i=0; i<arr.length; i++){
     var element = document.getElementById(arr[i]);
     if(element.value!=""){
-      input = element.value       //Desired Input
+       input = element.value       //Desired Input
+       $.ajax({
+          type : "POST",
+          url : '/handler',
+          dataType: "json",
+          data: JSON.stringify(input),
+          contentType: 'application/json;charset=UTF-8',
+          success: function (data) {
+       
+            var out = document.getElementById('out');
+            out.innerText = data.ans; 
+            return ;
+            }
+          });
+       // document.write(answer);
+       // if(answer!=""){
+
+       // }
+       // return;
     }
+
+
   }
 }
 
@@ -78,7 +101,7 @@ function readInput() {
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo mr-auto"><a href="{{ url_for('home') }}">Mentor</a></h1>
+      <h1 class="logo mr-auto"><a href="{{ url_for('home') }}">Extramarks</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -114,7 +137,8 @@ function readInput() {
 
 </section>
 
- <section id="query" class="query">
+ <section id="query" style= "   margin:0;
+    padding: 0;"class="query">
     
     <input type="text" name="is" id="is" placeholder="is" style = 'display:none;margin:0 auto; width: 500px;'/>
 
@@ -122,10 +146,13 @@ function readInput() {
     <input type="text" name="was" id="was" placeholder="was" style='display:none;margin:0 auto; width: 500px;'/>
 
     <button type="submit" id="button" class="btn btn-success" style='display:none;margin:10px auto; width: 150px;' onclick='readInput()'; >Submit</button>
+    
   </section>
 
-
-
+  <section id="answer" style= "   margin:0;
+    padding: 5;"class="answer">
+    <h3 id="out" style = "margin:0 auto;text-align: center"></h3>
+  </section>
 
 
 
@@ -135,7 +162,8 @@ function readInput() {
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
+  <footer id="footer" style = "position: absolute;bottom: 0px;
+    width: 100%;">
 
 
 
