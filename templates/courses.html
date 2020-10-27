@@ -35,6 +35,28 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+<script type="text/javascript">
+function CheckColors(val){
+
+ var arr = ["is", "are", "was"]
+ for (i = 0; i < arr.length; i++) {
+  var element=document.getElementById(arr[i]);
+  element.value = "";
+  element.style.display='none';
+  }
+ 
+ if(val!="type"){
+  var element=document.getElementById(val);
+  element.style.display='block';
+}
+
+ else  {
+  var element=document.getElementById('is');
+  element.style.display='none';}
+}
+
+</script>
+
 </head>
 
 <body>
@@ -64,43 +86,32 @@
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
       <div class="container">
-        <h2>Courses</h2>
-        <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+        <h2>Steps</h2>
+        <p>Select the type of the question. Enter the input in the displayed text box</p>
       </div>
     </div><!-- End Breadcrumbs -->
+ <section id="type_ques" class="type_ques">
+  
+   <select name="color"  style = "margin-left: 42%; text-align: center;" onchange='CheckColors(this.value);'> 
+    <option value = "type">Type of the Question</option>  
+    <option value = "is">is</option>  
+    <option value = "are">are</option>
+    <option value = "was">was</option>
+    </select>
 
-  <form>
-<!-- <select name='myfield' onchange='this.form.submit()'>
-  <option selected>General</option>
-  <option>is</option>  
-  <option>are</option>
-  <option>was</option>
-    <option>were</option>
-  <option>in</option>
-    <option>the</option>
-  <option>by</option>
-    <option>as</option>
-  <option>be</option>
-    <option>called</option>
-  <option>a</option>
-    <option>for</option>
-  <option>because</option>
-  <option>due to</option>
-  <option>from</option>
-</select> -->
+</section>
 
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="is">is</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
-<noscript><input type="submit" value="Submit"></noscript>
-</form>
+ <section id="query" class="query">
+    
+    <input type="text" name="is" id="is" placeholder="is" style = 'display:none;margin:0 auto; width: 500px;'/>
+
+    <input type="text" name="are" id="are" placeholder="are" style='display:none;margin:0 auto; width: 500px;'/>
+    <input type="text" name="was" id="was" placeholder="was" style='display:none;margin:0 auto; width: 500px;'/>
+  </section>
+
+
+
+
 
   </main><!-- End #main -->
 
