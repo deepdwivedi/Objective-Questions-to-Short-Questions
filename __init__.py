@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request,json
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
-
+from shortanswersproject import run
 app = Flask(__name__)
 
 # class ReusableForm(Form):
@@ -43,8 +43,10 @@ def handler():
 	if request.method == 'POST':
 		query = request.get_json()
 		print(query)
+		ans = run(query)
+		print(ans)
 	return json.jsonify({ 
-        'ans': "final output" 
+        'ans': ans 
     }) 	
 	
 	#Your action goes here with corresponding ID

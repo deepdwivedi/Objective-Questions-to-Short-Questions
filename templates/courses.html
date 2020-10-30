@@ -63,6 +63,9 @@ function readInput() {
   var input = ""
   var answer = ""
   var arr = ["is", "are", "was"]
+  var out = document.getElementById('out');
+  out.innerText = ""; 
+
   for(i=0; i<arr.length; i++){
     var element = document.getElementById(arr[i]);
     if(element.value!=""){
