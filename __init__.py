@@ -10,11 +10,11 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
-@app.route('/courses')
-def courses():
+@app.route('/converter')
+def converter():
 	# select = request.form.get('myfield')
 	# print(str(select)) # just to see what select is
-	return render_template("courses.html")
+	return render_template("converter.html")
 
 # @app.route('/is',methods=['GET', 'POST'])
 # def in_ques():
@@ -44,7 +44,7 @@ def handler():
 		query = request.get_json()
 		print(query)
 		ans = run(query)
-		print(ans)
+		print("aaaaa",ans)
 	return json.jsonify({ 
         'ans': ans 
     }) 	

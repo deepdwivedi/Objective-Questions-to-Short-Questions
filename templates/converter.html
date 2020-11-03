@@ -37,8 +37,9 @@
   ======================================================== -->
 <script type="text/javascript">
 function CheckColors(val){
-
- var arr = ["is", "are", "was"]
+  // document.write(val)
+  console.log("jmcksdc")
+ var arr = ["a","are","as","be","because","by","called","due to", "for", "in","the","was"]
  for (i = 0; i < arr.length; i++) {
   var element=document.getElementById(arr[i]);
   element.value = "";
@@ -46,8 +47,10 @@ function CheckColors(val){
   var out = document.getElementById('out');
   out.innerText = ""; 
   }
- 
+ // print(val,"vvvv")
+ // document.write(val)
  if(val!="type"){
+
   var element=document.getElementById(val);
   element.style.display='block';
   var element = document.getElementById('button');
@@ -62,7 +65,7 @@ function CheckColors(val){
 function readInput() {
   var input = ""
   var answer = ""
-  var arr = ["is", "are", "was"]
+  var arr = ["a","are","as","be","because","by","called","due to", "for", "in","the","was"]
   var out = document.getElementById('out');
   out.innerText = ""; 
 
@@ -93,9 +96,85 @@ function readInput() {
 
   }
 }
+$("select").on("click" , function() {
+  
+  $(this).parent(".select-box").toggleClass("open");
+  
+});
 
+$(document).mouseup(function (e)
+{
+    var container = $(".select-box");
+
+    if (container.has(e.target).length === 0)
+    {
+        container.removeClass("open");
+    }
+});
+
+
+$("select").on("change" , function() {
+  
+  var selection = $(this).find("option:selected").text(),
+      labelFor = $(this).attr("id"),
+      label = $("[for='" + labelFor + "']");
+    
+  label.find(".label-desc").html(selection);
+    
+});
 </script>
+<style >
+  @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
+
+.select-box {
+  cursor: pointer;
+  position : relative;
+  max-width:  20em;
+  margin: 5em auto;
+  width: 300px;
+}
+
+.select,
+.label {
+  color: #414141;
+  display: block;
+  font: 400 17px/2em 'Source Sans Pro', sans-serif;
+}
+
+.select {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  padding: 5px 0;
+  height: 40px;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  background: none transparent;
+  border: 0 none;
+}
+.select-box1 {
+  background: #ececec;
+}
+
+.label {
+  position: relative;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.open .label::after {
+   content: "▲";
+}
+.label::after {
+  content: "▼";
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px 15px;
+  border-left: 5px solid #fff;
+}
+</style>
 </head>
 
 <body>
@@ -115,7 +194,7 @@ function readInput() {
         </ul>
       </nav><!-- .nav-menu -->
 
-      <a href="{{ url_for('courses') }}" class="get-started-btn">Get Started</a>
+      <a href="{{ url_for('converter') }}" class="get-started-btn">Get Started</a>
 
     </div>
   </header><!-- End Header -->
@@ -139,23 +218,62 @@ function readInput() {
       </div>
     </div><!-- End Breadcrumbs -->
  <section id="type_ques" class="type_ques">
-  
-   <select name="color"  style = "margin-left: 42%; text-align: center; " onchange='CheckColors(this.value);'> 
-    <option value = "type">Type of the Question</option>  
-    <option value = "is">is</option>  
-    <option value = "are">are</option>
-    <option value = "was">was</option>
-    </select>
-
-</section>
-
- <section id="query" style= "   margin:0;
-    padding: 0;"class="query">
+  <!-- <form action="#"> -->
+ 
+  <div class="select-box">
     
-    <input type="text" name="is" id="is" placeholder="is" style = 'display:none;margin:0 auto; width: 500px;'/>
+    <label for="select-box1" class="label select-box1"><span class="label-desc">Type of the Question</span> </label>
+   <select  id="select-box1" class="select" onchange='CheckColors(this.value);'> 
+    <!-- <option value = "type">Type of the Question</option>   -->
+     <option value="" selected>---------</option>
+    <option value = "a">a</option>
+    <option value = "are">are</option>
+    <option value = "as">as</option>
+    <option value = "be">be</option>
+    <option value = "because">because</option>
+    <option value = "by">by</option>
+    <option value = "called">called</option>  
+    <option value = "due to">due to</option>
+    <option value = "for">for</option>
+    <option value = "in">in</option>  
+    <option value = "is">is</option>  
+    <option value = "the">the</option>
+    <option value = "was">was</option>
+   
+    
+    
+   
+    
+ 
+    </select>
+    
+  </div>
+   
 
-    <input type="text" name="are" id="are" placeholder="are" style='display:none;margin:0 auto; width: 500px;'/>
-    <input type="text" name="was" id="was" placeholder="was" style='display:none;margin:0 auto; width: 500px;'/>
+
+    <input type="text" name="a" id="a" placeholder="The velocity is an object is a" style = 'display:none;margin:0 auto; width: 500px;'/>
+
+    <input type="text" name="are" id="are" placeholder="The correct geometry and hybridization for XeF⁴ are" style='display:none;margin:0 auto; width: 500px;'/>
+    <input type="text" name="as" id="as" placeholder="Persistent hunger is also known as" style='display:none;margin:0 auto; width: 500px;'/>
+    <input type="text" name="be" id="be" placeholder="For a body to float in a liquid, the weight of the body should be" style='display:none;margin:0 auto; width: 500px;'/>
+    <input type="text" name="because" id="because" placeholder="Rajasthan receives scanty rainfall because" style='display:none;margin:0 auto; width: 500px;'/>
+
+    <input type="text" name="by" id="by" placeholder="The last known Sangha was captured by" style = 'display:none;margin:0 auto; width: 500px;'/>
+
+    <input type="text" name="called" id="called" placeholder="The bright streak of light in sky is called" style='display:none;margin:0 auto; width: 500px;'/>
+     <input type="text" name="due to" id="due to" placeholder="Safety devices are used in our home due to" style='display:none;margin:0 auto; width: 500px;'/>
+    <input type="text" name="for" id="for" placeholder="Mauryan roads and rivers were important for " style='display:none;margin:0 auto; width: 500px;'/>
+    <input type="text" name="in" id="in" placeholder="Valves are present in" style='display:none;margin:0 auto; width: 500px;'/>
+    <input type="text" name="is" id="is" placeholder="The scientific name of apple is" style='display:none;margin:0 auto; width: 500px;'/>
+
+    <input type="text" name="the" id="the" placeholder="The process of fertilisation takes place in humans inside the" style = 'display:none;margin:0 auto; width: 500px;'/>
+
+    <input type="text" name="was" id="was" placeholder="human hormone produced by using genetic engineering was
+" style = 'display:none;margin:0 auto; width: 500px;'/>
+
+  
+
+   
 
     <button type="submit" id="button" class="btn btn-success" style='display:none;margin:10px auto; width: 150px;' onclick='readInput()'; >Submit</button>
     

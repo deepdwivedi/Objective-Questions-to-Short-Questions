@@ -845,11 +845,11 @@ def compute(x):
       
         # print("==============")
 
-    elif(last_word=="ftto" and "Math" not in notWh_bs[i]):   
+    elif(last_word=="to" ):   
       # print(notWh[i]," -------->",notWh_ans[i])
       # print(notWh_skill[i])
       # to_questions(notWh[i])
-      # print("========================")
+      print("========================")
       temp.append(notWh[i])
       temp.append(notWh_ans[i])
       temp.append(to_questions(notWh[i]))
