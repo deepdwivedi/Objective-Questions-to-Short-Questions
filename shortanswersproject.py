@@ -172,7 +172,7 @@ def pre_process(x):
   # y = a.l/ower()
   # for j in y:
   if(not re.match(r'[a-z0-9]+',y)):
-    count_hindi +=1
+    # count_hindi +=1
     # print(y)
     # input()
     flag_eng = False
@@ -724,12 +724,13 @@ import nltk
 # nltk.download('punkt')
 """ Driver code for conversion of collected questions based on the category
 """
-def compute(x):
+def compute(x,y):
   # notWh = []
   # print("#######",len(notWh))
   notWh = []
   notWh.append(x)
-  notWh_ans.append("")
+  notWh_ans = []
+  notWh_ans.append(y)
   mat = []
   count = 0
   print(len(notWh))
@@ -922,10 +923,11 @@ def compute(x):
 # print(mat)
 
 def run(ques):
-  ques = pre_process(ques)
+  ques1 = pre_process(ques['input'])
+  ans1 = pre_process(ques['answer'])
   print(ques)
   if(ques!="Unable to resolve"):
-    mat,count = compute(ques)
+    mat,count = compute(ques1,ans1)
     print(mat)
     return mat[0][2]
   else:

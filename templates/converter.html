@@ -38,8 +38,12 @@
 <script type="text/javascript">
 function CheckColors(val){
   // document.write(val)
-  console.log("jmcksdc")
- var arr = ["a","are","as","be","because","by","called","due to", "for", "in","the","was"]
+  // console.log("jmcksdc")
+  var element=document.getElementById('text_ans');
+  element.value = "";
+  element.style.display = 'none';
+
+ var arr = ["a","are","as","be","because","by","called","due to", "for", "in","is","on","the","was"]
  for (i = 0; i < arr.length; i++) {
   var element=document.getElementById(arr[i]);
   element.value = "";
@@ -55,6 +59,11 @@ function CheckColors(val){
   element.style.display='block';
   var element = document.getElementById('button');
   element.style.display='block';
+  if(val =="on"){
+     var element=document.getElementById('text_ans');
+      element.style.display='block';
+  // element.value = "";
+  }
 }
 
  else  {
@@ -63,21 +72,36 @@ function CheckColors(val){
 }
 
 function readInput() {
+
   var input = ""
   var answer = ""
-  var arr = ["a","are","as","be","because","by","called","due to", "for", "in","the","was"]
+  var arr = ["a","are","as","be","because","by","called","due to", "for", "in","is","on","the","was"]
   var out = document.getElementById('out');
   out.innerText = ""; 
-
+ 
   for(i=0; i<arr.length; i++){
-    var element = document.getElementById(arr[i]);
-    if(element.value!=""){
-       input = element.value       //Desired Input
+    var element1 = document.getElementById(arr[i]);
+    var element2 = document.getElementById('text_ans');
+
+    if(element1.value!=""){
+
+       input1 = element1.value  ;     //Desired Input
+       // document.write(input1)
+       input2 = element2.value  ;     //Desired Input
+       // arr1 = []
+
+       // arr1.append(input1)
+       // arr1.append(input2)/
+       var dict = {};
+       dict['input'] = input1;
+       dict['answer'] = input2;
+
+      // document.write(dict)
        $.ajax({
           type : "POST",
           url : '/handler',
           dataType: "json",
-          data: JSON.stringify(input),
+          data: JSON.stringify(dict),
           contentType: 'application/json;charset=UTF-8',
           success: function (data) {
        
@@ -174,6 +198,9 @@ $("select").on("change" , function() {
   padding: 5px 15px;
   border-left: 5px solid #fff;
 }
+
+
+
 </style>
 </head>
 
@@ -236,7 +263,8 @@ $("select").on("change" , function() {
     <option value = "due to">due to</option>
     <option value = "for">for</option>
     <option value = "in">in</option>  
-    <option value = "is">is</option>  
+    <option value = "is">is</option> 
+    <option value = "on">on</option>  
     <option value = "the">the</option>
     <option value = "was">was</option>
    
@@ -248,8 +276,6 @@ $("select").on("change" , function() {
     </select>
     
   </div>
-   
-
 
     <input type="text" name="a" id="a" placeholder="The velocity is an object is a" style = 'display:none;margin:0 auto; width: 500px;'/>
 
@@ -265,18 +291,17 @@ $("select").on("change" , function() {
     <input type="text" name="for" id="for" placeholder="Mauryan roads and rivers were important for " style='display:none;margin:0 auto; width: 500px;'/>
     <input type="text" name="in" id="in" placeholder="Valves are present in" style='display:none;margin:0 auto; width: 500px;'/>
     <input type="text" name="is" id="is" placeholder="The scientific name of apple is" style='display:none;margin:0 auto; width: 500px;'/>
-
+    <input type="text" name="on" id="on" placeholder="World Health is celebrated on" style = 'display:none;margin:0 auto; width: 500px;'/>
     <input type="text" name="the" id="the" placeholder="The process of fertilisation takes place in humans inside the" style = 'display:none;margin:0 auto; width: 500px;'/>
 
     <input type="text" name="was" id="was" placeholder="human hormone produced by using genetic engineering was
 " style = 'display:none;margin:0 auto; width: 500px;'/>
 
+    <input type="text" name="text_ans" id="text_ans" placeholder="June 5
+" style = 'display:none;margin:4px auto; width: 500px;'/>
   
-
-   
-
     <button type="submit" id="button" class="btn btn-success" style='display:none;margin:10px auto; width: 150px;' onclick='readInput()'; >Submit</button>
-    
+ 
   </section>
 
   <section id="answer" style= "   margin:0;
